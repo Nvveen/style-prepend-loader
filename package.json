@@ -1,0 +1,28 @@
+{
+  "name": "style-prepend-loader",
+  "version": "0.0.1",
+  "description": "Prepend style files with ts/js configuration objects",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "https://github.com/Nvveen/style-prepend-loader",
+  "author": "Neal van Veen <nealvanveen@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/loader-runner": "^2.2.3",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "loader-runner": "^3.1.0"
+  }
+}
