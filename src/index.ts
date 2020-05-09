@@ -18,7 +18,9 @@ function loader(this: ExtendedLoaderContext, source: string) {
   if (!this.loadModule) throw new Error('No module loader available in loader');
   const callback = this.async();
   if (!callback) throw new Error('No callback available in loader');
+  console.log(this.resourceQuery);
   const m = this.resourceQuery.match(/\?theme=(.*)$/);
+  console.log(m);
   if (!(Array.isArray(m) && m.length === 1)) {
     throw new Error('Invalid theme file passed to loader');
   }
