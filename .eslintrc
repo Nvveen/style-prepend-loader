@@ -14,5 +14,11 @@
     "sourceType": "module"
   },
   "ignorePatterns": ["./example/**/*"],
-  "plugins": ["@typescript-eslint"]
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "arrow-parens": "off",
+    "consistent-return": "off",
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off"
+  }
 }

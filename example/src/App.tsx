@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 // eslint-disable-next-line
-import '../../dist/src/index.js!./App.scss?theme=theme.ts';
+import '../../dist/index.js!./App.scss?theme=./theme.ts';
 
 function App() {
   return (
