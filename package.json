@@ -22,7 +22,9 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "test": "echo 1",
+    "prepublish": "tsc"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",
