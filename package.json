@@ -1,6 +1,6 @@
 {
   "name": "style-prepend-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Prepend style files with ts/js configuration objects",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,12 +24,15 @@
     "lint": "eslint src/**/*.ts",
     "watch": "tsc --watch",
     "test": "echo 1",
-    "prepublish": "tsc"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "loader-runner": "^3.1.0"
-  }
+  },
+  "files": [
+    "dist/"
+  ]
 }
