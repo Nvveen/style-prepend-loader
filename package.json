@@ -1,6 +1,6 @@
 {
   "name": "style-prepend-loader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Prepend style files with ts/js configuration objects",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
