@@ -1,10 +1,9 @@
-/* eslint-disable global-require */
-/* eslint-disable no-unused-vars */
 import path from 'path';
 import fs from 'fs';
 import vm from 'vm';
-import { ExtendedLoaderContext } from 'loader-runner';
 import * as babel from '@babel/core';
+// eslint-disable-next-line no-unused-vars
+import { ExtendedLoaderContext } from 'loader-runner';
 
 const toKebabCase = (s: string) =>
   s.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -43,11 +42,13 @@ async function loader(
     }
     if (!this.context) throw new Error('Invalid context path in loader');
 
+    // Resolve the theme file parameter to the theme file
     const m = this.resourceQuery.match(/\?theme=(.*)$/);
     if (m?.length !== 2) throw new Error('Invalid theme file passed to loader');
     const themePath = path.resolve(this.context, m[1]);
     const themeSrc = await fs.promises.readFile(themePath, 'utf-8');
 
+    // Transform contents of theme file to es5
     const es = await new Promise<babel.BabelFileResult | null>(
       (resolve, reject) => {
         babel.transform(
@@ -56,7 +57,9 @@ async function loader(
             filename: themePath,
             babelrc: false,
             presets: [
+              // eslint-disable-next-line global-require
               require('@babel/preset-typescript'),
+              // eslint-disable-next-line global-require
               require('@babel/preset-env'),
             ],
           },
@@ -68,6 +71,7 @@ async function loader(
       }
     );
     if (!es?.code) throw new Error(`Unable to compile ${themePath}`);
+    // Run content in VM to extract the default export
     const context = vm.createContext({ exports: {} });
     const script = new vm.Script(es.code);
     script.runInNewContext(context);
@@ -76,10 +80,12 @@ async function loader(
       exports: { default: theme },
     } = context;
 
+    // Transform to variables
     const sass = Object.keys(theme)
       .map((k) => `$${toKebabCase(k)}: ${theme[k]};`)
       .join('\n');
 
+    // Prepend to source
     return callback(null, `${sass}\n${source}`, map, meta);
   } catch (err) {
     callback(err);
@@ -88,6 +94,8 @@ async function loader(
   return source;
 }
 
+// Adjust the loaders order at pitch to run loader before
+// predefined ones.
 function pitch(this: ExtendedLoaderContext) {
   const [first, ...otherLoaders] = this.loaders;
   if (first.path !== require.resolve('./')) return;
