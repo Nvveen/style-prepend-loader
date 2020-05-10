@@ -8,6 +8,7 @@
   "author": "Neal van Veen <nealvanveen@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/babel__core": "^7.1.7",
     "@types/loader-runner": "^2.2.3",
     "@types/node": "^13.13.5",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
@@ -24,6 +25,9 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
     "loader-runner": "^3.1.0"
   }
 }
