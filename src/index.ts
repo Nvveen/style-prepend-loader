@@ -45,7 +45,7 @@ async function loader(
     // Resolve the theme file parameter to the theme file
     const m = this.resourceQuery.match(/\?theme=(.*)$/);
     if (m?.length !== 2) throw new Error('Invalid theme file passed to loader');
-    const themePath = path.resolve(this.context, m[1]);
+    const themePath = path.resolve(this.rootContext, m[1]);
     const themeSrc = await fs.promises.readFile(themePath, 'utf-8');
 
     // Transform contents of theme file to es5
